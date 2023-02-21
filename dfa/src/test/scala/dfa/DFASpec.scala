@@ -4,6 +4,7 @@ import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should._
 
 class DFASpec extends AnyFunSuite with Matchers:
+
   test("testDFA accepts the empty word") {
     testDFA.accepts("") should be(true)
   }
