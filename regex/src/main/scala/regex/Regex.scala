@@ -8,21 +8,19 @@ package regex
 
 // Add your definitions here
 
-trait RegularLanguage:
+trait RegularLanguage
 
-case class Empty()
+case object Empty extends RegularLanguage
 
-case class Epsilon()
+case object Epsilon extends RegularLanguage
 
-case class Character()
+case class Character(obj: Char) extends RegularLanguage
 
-case class Union()
+case class Union(objOne: RegularLanguage, objTwo: RegularLanguage) extends RegularLanguage
 
-case class Concat()
+case class Concat(objOne: RegularLanguage, objTwo: RegularLanguage) extends RegularLanguage
 
-case class Star()
-
-
+case class Star(objOne: RegularLanguage) extends RegularLanguage
 
 /** *****************************************************************************
   * Derivatives
