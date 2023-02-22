@@ -62,8 +62,18 @@ def nullable(lang: RegularLanguage): Boolean =
 
 /** Computes the derivative of a language, with respect to a character */
 def derivative(l: RegularLanguage)(c: Char): RegularLanguage = 
-  (l, c) match
-    case
+  l match
+    case Union(x, y) => Union(derivative(x)(c), derivative(y)(c))
+    case Concat(x, y) => 
+      if nullable(x) then Union(Concat(derivative(x)(c), y), y)
+      else Concat(derivative(x)(c), y)
+    case Star(x) => Concat(derivative(x)(c), Star(x))
+    case Empty => Empty
+    case Epsilon => Empty
+    case x =>
+      if Character(c) == x then Epsilon
+      else Empty
+
   
 
 /** *****************************************************************************
